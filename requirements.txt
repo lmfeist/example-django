@@ -4,4 +4,4 @@ gunicorn
 sqlparse
 whitenoise
 django-storages[s3]
-psycopg-binary
+psycopg2-binary
