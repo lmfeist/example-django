@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'example_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DATABASE_NAME", "koyebdb"),
+        'USER': os.getenv("DATABASE_USER", "koyeb-adm"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD", "1234"),
+        'HOST': os.getenv("DATABASE_HOST", "ep-fragrant-moon-a2p9610h.eu-central-1.pg.koyeb.app"),
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
