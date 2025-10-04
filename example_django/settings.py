@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
+    'example_django',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +83,7 @@ DATABASES = {
         'NAME': os.getenv("DATABASE_NAME", "koyebdb"),
         'USER': os.getenv("DATABASE_USER", "koyeb-adm"),
         'PASSWORD': os.getenv("DATABASE_PASSWORD", "1234"),
-        'HOST': os.getenv("DATABASE_HOST", "ep-fragrant-moon-a2p9610h.eu-central-1.pg.koyeb.app"),
+        'HOST': os.getenv("DATABASE_HOST", "localhost"),
         'OPTIONS': {'sslmode': 'require'},
     }
 }
@@ -129,3 +131,16 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+        	"session_profile": os.getenv("AWS_S3_SESSION_PROFILE"),
+            "access_key": os.getenv("AWS_ACCESS_KEY_ID"),
+            "secret_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
+            "security_token": os.getenv("AWS_SECURITY_TOKEN")
+        },
+    },
+}
