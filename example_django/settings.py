@@ -108,7 +108,7 @@ else:
             'USER': os.getenv("DATABASE_USER", "koyeb-adm"),
             'PASSWORD': os.getenv("DATABASE_PASSWORD", "1234"),
             'HOST': os.getenv("DATABASE_HOST", "localhost"),
-            'OPTIONS': {'sslmode': 'require'},
+            'PORT': os.getenv("DATABASE_PORT", "5432"),
         }
     }
 
