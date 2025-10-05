@@ -7,8 +7,8 @@
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <!-- Tailwind CSS + DaisyUI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script>
         // Theme initialization - runs before page render to avoid flash
         const savedTheme = localStorage.getItem('theme') || 'light';
@@ -37,7 +37,7 @@
 
         <div class="grid md:grid-cols-2 gap-6">
             <!-- Card 1: Get Current Time -->
-            <div class="card bg-base-100 shadow-xl">
+            <div class="card card-border bg-base-100 shadow-xl">
                 <div class="card-body">
                     <h2 class="card-title">Current Time</h2>
                     <p>Click the button to fetch the current server time using HTMX.</p>
@@ -57,7 +57,7 @@
             </div>
 
             <!-- Card 2: Greeting Form -->
-            <div class="card bg-base-100 shadow-xl">
+            <div class="card card-border bg-base-100 shadow-xl">
                 <div class="card-body">
                     <h2 class="card-title">Personal Greeting</h2>
                     <p>Enter your name to receive a personalized greeting.</p>
@@ -80,7 +80,7 @@
             </div>
 
             <!-- Card 3: Click Counter -->
-            <div class="card bg-base-100 shadow-xl">
+            <div class="card card-border bg-base-100 shadow-xl">
                 <div class="card-body">
                     <h2 class="card-title">Click Counter</h2>
                     <p>See HTMX swapping in action with different animations.</p>
@@ -107,7 +107,7 @@
             </div>
 
             <!-- Card 4: Information -->
-            <div class="card bg-base-100 shadow-xl">
+            <div class="card card-border bg-base-100 shadow-xl">
                 <div class="card-body">
                     <h2 class="card-title">About HTMX</h2>
                     <p class="mb-3">
