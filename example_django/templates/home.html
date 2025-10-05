@@ -8,6 +8,39 @@
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Smooth transitions for HTMX swaps */
+        .htmx-swapping {
+            opacity: 0;
+            transition: opacity 0.2s ease-out;
+        }
+        
+        .htmx-settling {
+            opacity: 1;
+            transition: opacity 0.2s ease-in;
+        }
+        
+        /* Animation for delete notification */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        /* Smooth hover transitions for todo items */
+        .group:hover .group-hover\:opacity-100 {
+            transition: opacity 0.2s ease-in-out;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <div class="container mx-auto px-4 py-8">
@@ -54,28 +87,74 @@
                 </div>
             </div>
 
-            <!-- Card 3: Click Counter -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Click Counter</h2>
-                <p class="text-gray-600 mb-4">See HTMX swapping in action with different animations.</p>
+            <!-- Card 3: Interactive Todo List -->
+            <div class="bg-white rounded-lg shadow-md p-6 md:col-span-2">
+                <h2 class="text-2xl font-semibold mb-2 text-gray-800">Interactive Todo List</h2>
+                <p class="text-gray-600 mb-4">Experience advanced HTMX features: inline editing, delete with undo, filtering, and dynamic updates.</p>
+                
+                <!-- Undo notification area -->
+                <div id="undo-notification" class="mb-4"></div>
+                
+                <!-- Add new todo -->
+                <div class="mb-4">
+                    <input type="text" 
+                        name="todo_text" 
+                        id="todo-input"
+                        placeholder="Add a new task and press Enter..." 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        hx-post="/todos/add/"
+                        hx-target="#todo-list"
+                        hx-swap="afterbegin"
+                        hx-trigger="keyup[key=='Enter']"
+                        hx-on::after-request="this.value=''">
+                </div>
+                
+                <!-- Filter buttons -->
                 <div class="flex gap-2 mb-4">
-                    <button 
-                        class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded transition duration-200"
-                        hx-get="/time/"
-                        hx-target="#counter-result"
-                        hx-swap="innerHTML swap:1s">
-                        Fade Swap
+                    <button class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition"
+                        hx-get="/todos/?filter=all"
+                        hx-target="#todo-list"
+                        hx-swap="innerHTML">
+                        All
                     </button>
-                    <button 
-                        class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded transition duration-200"
-                        hx-get="/time/"
-                        hx-target="#counter-result"
-                        hx-swap="outerHTML">
-                        Outer Swap
+                    <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition"
+                        hx-get="/todos/?filter=active"
+                        hx-target="#todo-list"
+                        hx-swap="innerHTML">
+                        Active
+                    </button>
+                    <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition"
+                        hx-get="/todos/?filter=completed"
+                        hx-target="#todo-list"
+                        hx-swap="innerHTML">
+                        Completed
+                    </button>
+                    <button class="ml-auto px-4 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition"
+                        hx-post="/todos/clear/"
+                        hx-target="#todo-list"
+                        hx-swap="innerHTML"
+                        hx-confirm="Clear all completed tasks?">
+                        Clear Completed
                     </button>
                 </div>
-                <div id="counter-result" class="mt-4 p-4 bg-gray-100 rounded-lg">
-                    <p class="text-gray-700">Click a button to see different swap effects!</p>
+                
+                <!-- Todo list -->
+                <ul id="todo-list" class="space-y-2">
+                    <li hx-get="/todos/" hx-trigger="load" hx-swap="innerHTML" class="text-center text-gray-400 py-4">Loading...</li>
+                </ul>
+                
+                <!-- Feature highlights -->
+                <div class="mt-6 p-4 bg-purple-50 rounded-lg">
+                    <h3 class="font-semibold text-purple-900 mb-2">HTMX Features Demonstrated:</h3>
+                    <ul class="text-sm text-purple-800 space-y-1">
+                        <li>✓ <strong>Multiple HTTP verbs</strong>: GET, POST, DELETE requests</li>
+                        <li>✓ <strong>Dynamic targeting</strong>: Precise element updates with hx-target</li>
+                        <li>✓ <strong>Event handling</strong>: Custom triggers (Enter key, load events)</li>
+                        <li>✓ <strong>Inline editing</strong>: Transform display to edit mode seamlessly</li>
+                        <li>✓ <strong>Optimistic UI</strong>: Immediate feedback with undo capability</li>
+                        <li>✓ <strong>CSS transitions</strong>: Smooth animations without JavaScript</li>
+                        <li>✓ <strong>Swap strategies</strong>: innerHTML, outerHTML, afterbegin swapping</li>
+                    </ul>
                 </div>
             </div>
 
