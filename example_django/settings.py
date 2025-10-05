@@ -71,6 +71,8 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'example_django.asgi.application'
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -154,3 +156,45 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+
+LOGLEVEL = os.getenv("DJANGO_LOGLEVEL", "info").upper()
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {
+            "format": (
+                "[%(asctime)s] [%(levelname)s] %(message)s (%(filename)s:%(lineno)s)"
+            ),
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    "filters": {
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "console",
+        },
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+            "filters": ["require_debug_false"],
+        },
+    },
+    "loggers": {
+        "root": {
+            "level": LOGLEVEL,
+            "handlers": ["console"],
+        },
+        "django": {
+            "level": "INFO",
+            "handlers": ["mail_admins"],
+        },
+    },
+}
+
