@@ -22,5 +22,14 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('time/', views.get_current_time, name='get_time'),
     path('greet/', views.greet, name='greet'),
+    # Todo endpoints
+    path('todos/', views.get_todos, name='get_todos'),
+    path('todos/add/', views.add_todo, name='add_todo'),
+    path('todos/<int:todo_id>/toggle/', views.toggle_todo, name='toggle_todo'),
+    path('todos/<int:todo_id>/edit/', views.edit_todo, name='edit_todo'),
+    path('todos/<int:todo_id>/save/', views.save_todo, name='save_todo'),
+    path('todos/<int:todo_id>/delete/', views.delete_todo, name='delete_todo'),
+    path('todos/undo/', views.undo_delete, name='undo_delete'),
+    path('todos/clear/', views.clear_completed, name='clear_completed'),
     path('admin/', admin.site.urls),
 ]
