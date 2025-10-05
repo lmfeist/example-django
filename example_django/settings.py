@@ -74,6 +74,8 @@ ASGI_APPLICATION = 'example_django.asgi.application'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", [])
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
