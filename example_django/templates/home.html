@@ -21,6 +21,11 @@
             <div>
                 <h1 class="text-4xl font-bold mb-2">Welcome to HTMX Demo</h1>
                 <p class="text-base-content/70">A simple Django application demonstrating HTMX capabilities</p>
+                {% if user.is_authenticated %}
+                <p class="text-base-content/70 mt-2">Welcome, <strong>{{ user.username }}</strong>! <a href="{% url 'profile' %}" class="link link-primary">View Profile</a> | <a href="{% url 'logout' %}" class="link link-primary">Logout</a></p>
+                {% else %}
+                <p class="text-base-content/70 mt-2"><a href="{% url 'login' %}" class="link link-primary">Login</a> | <a href="{% url 'register' %}" class="link link-primary">Register</a></p>
+                {% endif %}
             </div>
             <label class="swap swap-rotate">
                 <input type="checkbox" id="theme-toggle" class="theme-controller" />

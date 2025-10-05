@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .profile-info {
+            margin: 20px 0;
+        }
+        .info-row {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .info-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+        }
+        .link {
+            margin-top: 20px;
+        }
+        .link a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+        
+        <div class="profile-info">
+            <div class="info-row">
+                <span class="info-label">Username:</span>
+                <span>{{ user.username }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email:</span>
+                <span>{{ user.email }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">First Name:</span>
+                <span>{{ user.first_name|default:"Not set" }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Last Name:</span>
+                <span>{{ user.last_name|default:"Not set" }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Bio:</span>
+                <span>{{ user.bio|default:"Not set" }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Birth Date:</span>
+                <span>{{ user.birth_date|default:"Not set" }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Date Joined:</span>
+                <span>{{ user.date_joined|date:"F d, Y" }}</span>
+            </div>
+        </div>
+        
+        <div class="link">
+            <a href="{% url 'home' %}">Back to Home</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
