@@ -23,4 +23,4 @@ COPY example_django example_django
 
 EXPOSE ${PORT}
 
-CMD gunicorn --bind :${PORT} --workers 2 example_django.wsgi
+CMD uvicorn --host 0.0.0.0 --port ${PORT} example_django.asgi:application
