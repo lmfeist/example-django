@@ -71,9 +71,21 @@ TEMPLATES = [
 
 ASGI_APPLICATION = 'example_django.asgi.application'
 
+# Trust the reverse proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Redirect all HTTP → HTTPS (only works correctly with the above)
+SECURE_SSL_REDIRECT = True
+
+# Use secure cookies
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Enable HSTS (handled by Nginx too, but Django can send it too)
+SECURE_HSTS_SECONDS = 63072000  # 2 years
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
 CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", [])
 
 
