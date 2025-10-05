@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX Demo - Home</title>
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Welcome to HTMX Demo</h1>
+            <p class="text-gray-600">A simple Django application demonstrating HTMX capabilities</p>
+        </header>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Card 1: Get Current Time -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Current Time</h2>
+                <p class="text-gray-600 mb-4">Click the button to fetch the current server time using HTMX.</p>
+                <button 
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-200"
+                    hx-get="/time/"
+                    hx-target="#time-result"
+                    hx-swap="innerHTML">
+                    Get Current Time
+                </button>
+                <div id="time-result" class="mt-4">
+                    <!-- Time will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Card 2: Greeting Form -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Personal Greeting</h2>
+                <p class="text-gray-600 mb-4">Enter your name to receive a personalized greeting.</p>
+                <div class="mb-4">
+                    <input 
+                        type="text" 
+                        id="name-input"
+                        name="name"
+                        placeholder="Enter your name"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                        hx-get="/greet/"
+                        hx-trigger="keyup changed delay:500ms"
+                        hx-target="#greeting-result"
+                        hx-include="[name='name']">
+                </div>
+                <div id="greeting-result">
+                    <!-- Greeting will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Card 3: Click Counter -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">Click Counter</h2>
+                <p class="text-gray-600 mb-4">See HTMX swapping in action with different animations.</p>
+                <div class="flex gap-2 mb-4">
+                    <button 
+                        class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded transition duration-200"
+                        hx-get="/time/"
+                        hx-target="#counter-result"
+                        hx-swap="innerHTML swap:1s">
+                        Fade Swap
+                    </button>
+                    <button 
+                        class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded transition duration-200"
+                        hx-get="/time/"
+                        hx-target="#counter-result"
+                        hx-swap="outerHTML">
+                        Outer Swap
+                    </button>
+                </div>
+                <div id="counter-result" class="mt-4 p-4 bg-gray-100 rounded-lg">
+                    <p class="text-gray-700">Click a button to see different swap effects!</p>
+                </div>
+            </div>
+
+            <!-- Card 4: Information -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800">About HTMX</h2>
+                <p class="text-gray-600 mb-3">
+                    HTMX allows you to access AJAX, CSS Transitions, WebSockets and Server Sent Events 
+                    directly in HTML, using attributes.
+                </p>
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>No JavaScript frameworks needed</li>
+                    <li>Simple HTML attributes</li>
+                    <li>Server-side rendering friendly</li>
+                    <li>Progressive enhancement</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>Built with Django, HTMX, and Tailwind CSS</p>
+        </footer>
+    </div>
+</body>
+</html>

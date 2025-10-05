@@ -58,7 +58,7 @@ ROOT_URLCONF = 'example_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'example_django' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,16 +77,25 @@ WSGI_APPLICATION = 'example_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DATABASE_NAME", "koyebdb"),
-        'USER': os.getenv("DATABASE_USER", "koyeb-adm"),
-        'PASSWORD': os.getenv("DATABASE_PASSWORD", "1234"),
-        'HOST': os.getenv("DATABASE_HOST", "localhost"),
-        'OPTIONS': {'sslmode': 'require'},
+# Use SQLite when DEBUG is True, otherwise use PostgreSQL
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv("DATABASE_NAME", "koyebdb"),
+            'USER': os.getenv("DATABASE_USER", "koyeb-adm"),
+            'PASSWORD': os.getenv("DATABASE_PASSWORD", "1234"),
+            'HOST': os.getenv("DATABASE_HOST", "localhost"),
+            'OPTIONS': {'sslmode': 'require'},
+        }
+    }
 
 
 # Password validation
@@ -142,5 +151,8 @@ STORAGES = {
             "secret_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
             "security_token": os.getenv("AWS_SECURITY_TOKEN")
         },
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
