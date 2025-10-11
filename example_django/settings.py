@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-ASGI_APPLICATION = 'example_django.asgi.application'
+WSGI_APPLICATION = 'example_django.wsgi.application'
 
 # Trust the reverse proxy
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

@@ -1,6 +1,5 @@
-asgiref
 Django==5.2
-uvicorn[standard]
+gunicorn
 sqlparse
 whitenoise
 django-storages[s3]

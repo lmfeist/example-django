@@ -24,4 +24,4 @@ COPY manage.py manage.py
 
 EXPOSE ${PORT}
 
-CMD uvicorn --host 0.0.0.0 --port ${PORT} example_django.asgi:application
+CMD gunicorn --bind 0.0.0.0:${PORT} example_django.wsgi:application
