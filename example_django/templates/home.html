@@ -6,6 +6,7 @@
     <title>HTMX Demo - Home</title>
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10/dist/ext/sse.js"></script>
     <!-- Tailwind CSS + DaisyUI -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -106,7 +107,34 @@
                 </div>
             </div>
 
-            <!-- Card 4: Information -->
+            <!-- Card 4: Server-Sent Events (SSE) Demo -->
+            <div class="card card-border bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">Server-Sent Events (SSE)</h2>
+                    <p>Watch real-time updates streamed from the server using SSE and htmx.</p>
+                    <div class="card-actions">
+                        <button 
+                            class="btn btn-primary"
+                            hx-ext="sse"
+                            sse-connect="/sse/"
+                            sse-swap="message"
+                            hx-target="#sse-result"
+                            hx-swap="beforeend">
+                            Start SSE Stream
+                        </button>
+                        <button 
+                            class="btn btn-secondary"
+                            onclick="document.getElementById('sse-result').innerHTML = ''">
+                            Clear
+                        </button>
+                    </div>
+                    <div id="sse-result" class="mt-4 max-h-64 overflow-y-auto">
+                        <!-- SSE updates will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Information -->
             <div class="card card-border bg-base-100 shadow-xl">
                 <div class="card-body">
                     <h2 class="card-title">About HTMX</h2>
