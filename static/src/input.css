@@ -6,4 +6,3 @@
 @plugin "flowbite/plugin";
 
 @source "../../node_modules/flowbite";
-@source "../../example_django/templates";
