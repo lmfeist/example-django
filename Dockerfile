@@ -1,4 +1,4 @@
-FROM python:3-alpine AS builder
+FROM python:3.13.8-alpine3.22 AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Stage 2
-FROM python:3-alpine AS runner
+FROM python:3.13.8-alpine3.22 AS runner
 
 ENV VIRTUAL_ENV=/app/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
