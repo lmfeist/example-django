@@ -20,7 +20,6 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('flowbite-demo/', views.index, name='index'),
     path('time/', views.get_current_time, name='get_time'),
     path('greet/', views.greet, name='greet'),
     path('sse/', views.sse_stream, name='sse_stream'),
