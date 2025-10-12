@@ -80,24 +80,39 @@ Visit `http://localhost:8000` in your browser.
 
 This project follows the [Flowbite Django setup guide](https://flowbite.com/docs/getting-started/django/):
 
-- **Tailwind CSS v3** with standard configuration (v4 not yet fully compatible with Flowbite)
+- **Tailwind CSS v4** with CSS-first configuration (no config file needed!)
 - **Flowbite v2.5** plugin and components integrated
 - **Dark mode** support using Tailwind's class-based dark mode
 - **django-compressor** for static file optimization
 - **Static files** properly configured for Django
 
-### Why Tailwind v3?
+### Tailwind v4 - CSS-First Approach
 
-While Tailwind CSS v4 introduces a new CSS-first configuration approach with `@import "tailwindcss"` and `@theme`, **Flowbite is currently built for Tailwind v3** and its plugin system isn't yet fully compatible with v4's alpha releases. We use v3 with the traditional `tailwind.config.js` approach for maximum compatibility.
+Tailwind v4 introduces a revolutionary **CSS-first configuration**. Instead of a `tailwind.config.js` file, everything is configured directly in `static/src/input.css`:
+
+```css
+@import "tailwindcss";
+
+@plugin "flowbite/plugin";
+
+@source "../../node_modules/flowbite";
+@source "../../example_django/templates";
+```
+
+This approach:
+- ✅ No config file needed
+- ✅ All configuration in one place (CSS)
+- ✅ Faster build times
+- ✅ Works perfectly with Flowbite plugin
 
 ### Installed Apps
 - `compressor` - Django Compressor for CSS/JS compression
 - `example_django` - Main application (equivalent to `flowbiteapp` in docs)
 
 ### Configuration Files
-- **`tailwind.config.js`** - Tailwind configuration with Flowbite plugin
-- **`static/src/input.css`** - Source CSS with `@tailwind` directives
-- **`static/src/output.css`** - Compiled CSS (tracked in git)
+- **`static/src/input.css`** - Source CSS with Tailwind v4 directives
+- **`static/src/output.css`** - Compiled CSS (33KB minified, tracked in git)
+- **No `tailwind.config.js` needed!**
 
 ### Django Compressor Settings
 ```python

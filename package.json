@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "Django project with Flowbite and Tailwind CSS",
   "scripts": {
-    "dev": "npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch",
-    "build": "npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --minify"
+    "dev": "npx @tailwindcss/cli -i ./static/src/input.css -o ./static/src/output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./static/src/input.css -o ./static/src/output.css --minify"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "tailwindcss": "^3.4.0"
+    "tailwindcss": "latest",
+    "@tailwindcss/cli": "latest"
   },
   "dependencies": {
     "flowbite": "^2.5.2"

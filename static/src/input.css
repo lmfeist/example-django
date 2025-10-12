@@ -1,5 +1,8 @@
 /* static/src/input.css */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "flowbite/plugin";
+
+@source "../../node_modules/flowbite";
+@source "../../example_django/templates";
