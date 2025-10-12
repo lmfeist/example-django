@@ -80,17 +80,26 @@ Visit `http://localhost:8000` in your browser.
 
 This project follows the [Flowbite Django setup guide](https://flowbite.com/docs/getting-started/django/):
 
-- **Tailwind CSS v3** with standard configuration
-- **Flowbite** plugin and components integrated
+- **Tailwind CSS v3** with standard configuration (v4 not yet fully compatible with Flowbite)
+- **Flowbite v2.5** plugin and components integrated
 - **Dark mode** support using Tailwind's class-based dark mode
 - **django-compressor** for static file optimization
 - **Static files** properly configured for Django
+
+### Why Tailwind v3?
+
+While Tailwind CSS v4 introduces a new CSS-first configuration approach with `@import "tailwindcss"` and `@theme`, **Flowbite is currently built for Tailwind v3** and its plugin system isn't yet fully compatible with v4's alpha releases. We use v3 with the traditional `tailwind.config.js` approach for maximum compatibility.
 
 ### Installed Apps
 - `compressor` - Django Compressor for CSS/JS compression
 - `example_django` - Main application (equivalent to `flowbiteapp` in docs)
 
-### Compressor Settings
+### Configuration Files
+- **`tailwind.config.js`** - Tailwind configuration with Flowbite plugin
+- **`static/src/input.css`** - Source CSS with `@tailwind` directives
+- **`static/src/output.css`** - Compiled CSS (tracked in git)
+
+### Django Compressor Settings
 ```python
 COMPRESS_ROOT = BASE_DIR / 'static'
 COMPRESS_ENABLED = True
