@@ -81,7 +81,7 @@ Visit `http://localhost:8000` in your browser.
 This project follows the [Flowbite Django setup guide](https://flowbite.com/docs/getting-started/django/):
 
 - **Tailwind CSS v4** with CSS-first configuration (no config file needed!)
-- **Flowbite v2.5** plugin and components integrated
+- **Flowbite v3.1.2** plugin and components integrated
 - **Dark mode** support using Tailwind's class-based dark mode
 - **django-compressor** for static file optimization
 - **Static files** properly configured for Django
@@ -92,6 +92,7 @@ Tailwind v4 introduces a revolutionary **CSS-first configuration**. Instead of a
 
 ```css
 @import "tailwindcss";
+@import "flowbite/src/themes/default.css";
 
 @plugin "flowbite/plugin";
 
@@ -102,8 +103,9 @@ Tailwind v4 introduces a revolutionary **CSS-first configuration**. Instead of a
 This approach:
 - ✅ No config file needed
 - ✅ All configuration in one place (CSS)
+- ✅ Flowbite theme colors and design tokens
 - ✅ Faster build times
-- ✅ Works perfectly with Flowbite plugin
+- ✅ Works perfectly with Flowbite plugin v3.1.2
 
 ### Installed Apps
 - `compressor` - Django Compressor for CSS/JS compression
