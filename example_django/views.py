@@ -26,6 +26,10 @@ def sse_stream(request):
     """Server-Sent Events endpoint that streams updates."""
     def event_stream():
         """Generator function that yields SSE formatted data."""
+        # Send an initial comment with padding to overcome buffering
+        # Many servers buffer until they get ~2KB of data
+        yield f": {' ' * 2048}\n\n"
+        
         for i in range(10):  # Send 10 updates
             # Get current timestamp
             current_time = datetime.datetime.now().strftime("%H:%M:%S")
@@ -33,16 +37,16 @@ def sse_stream(request):
             # Create the HTML content to send
             html_content = f'<div class="alert alert-info mb-2">Update #{i + 1} at {current_time}</div>'
             
-            # Format as SSE
-            # SSE format: "data: <content>\n\n"
-            yield f"data: {html_content}\n\n"
+            # Format as SSE with named event
+            # Add padding comment to ensure it's sent immediately
+            yield f": padding\nevent: message\ndata: {html_content}\n\n"
             
             # Wait 1 second before sending next update
             time.sleep(1)
         
         # Send a final message
         final_html = '<div class="alert alert-success">Stream completed!</div>'
-        yield f"data: {final_html}\n\n"
+        yield f": padding\nevent: message\ndata: {final_html}\n\n"
     
     # Return StreamingHttpResponse with SSE content type
     response = StreamingHttpResponse(event_stream(), content_type='text/event-stream')
