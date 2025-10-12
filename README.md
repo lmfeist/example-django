@@ -105,7 +105,17 @@ The application includes a dark/light theme toggle that:
 
 ## Production Deployment
 
-1. Build the CSS:
+### Deployment Strategy
+
+This project **tracks the compiled CSS** (`static/src/output.css`) in git, which means:
+- ✅ No Node.js required in production
+- ✅ Simpler deployment process
+- ✅ Works on all Django hosting platforms
+- ⚠️ Remember to rebuild CSS before committing style changes
+
+### Steps:
+
+1. **Before committing style changes**, rebuild the CSS:
    ```bash
    npm run build
    ```
@@ -120,6 +130,13 @@ The application includes a dark/light theme toggle that:
    - `DJANGO_DEBUG=False`
    - `DJANGO_ALLOWED_HOSTS`
    - Database settings (if using PostgreSQL)
+
+### Alternative: Build CSS During Deployment
+
+If you prefer not to track `output.css` in git, you can:
+1. Add `static/src/output.css` to `.gitignore`
+2. Ensure Node.js is available in your deployment environment
+3. Add a build step: `npm install && npm run build` before `collectstatic`
 
 ## License
 
