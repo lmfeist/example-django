@@ -34,15 +34,15 @@ def sse_stream(request):
             html_content = f'<div class="alert alert-info mb-2">Update #{i + 1} at {current_time}</div>'
             
             # Format as SSE
-            # SSE format: "data: <content>\n\n"
-            yield f"data: {html_content}\n\n"
+            # SSE format with named event: "event: <name>\ndata: <content>\n\n"
+            yield f"event: message\ndata: {html_content}\n\n"
             
             # Wait 1 second before sending next update
             time.sleep(1)
         
         # Send a final message
         final_html = '<div class="alert alert-success">Stream completed!</div>'
-        yield f"data: {final_html}\n\n"
+        yield f"event: message\ndata: {final_html}\n\n"
     
     # Return StreamingHttpResponse with SSE content type
     response = StreamingHttpResponse(event_stream(), content_type='text/event-stream')
