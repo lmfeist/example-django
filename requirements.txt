@@ -5,3 +5,4 @@ sqlparse
 whitenoise
 django-storages[s3]
 psycopg2-binary
+django-compressor

@@ -83,7 +83,23 @@ This project follows the [Flowbite Django setup guide](https://flowbite.com/docs
 - **Tailwind CSS v3** with standard configuration
 - **Flowbite** plugin and components integrated
 - **Dark mode** support using Tailwind's class-based dark mode
+- **django-compressor** for static file optimization
 - **Static files** properly configured for Django
+
+### Installed Apps
+- `compressor` - Django Compressor for CSS/JS compression
+- `example_django` - Main application (equivalent to `flowbiteapp` in docs)
+
+### Compressor Settings
+```python
+COMPRESS_ROOT = BASE_DIR / 'static'
+COMPRESS_ENABLED = True
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+```
 
 ## Development
 
