@@ -63,10 +63,13 @@ Visit `http://localhost:8000` in your browser.
 .
 ├── example_django/           # Django app
 │   ├── templates/           # HTML templates
-│   │   ├── home.html       # Main demo page
+│   │   ├── _base.html      # Base template with django-compressor
+│   │   ├── home.html       # Main page (HTMX demo) - acts as index
+│   │   ├── index.html      # Flowbite components demo
 │   │   └── registration/
 │   │       └── login.html  # Login page
 │   ├── settings.py         # Django settings
+│   ├── urls.py            # URL routing
 │   └── views.py            # View functions
 ├── static/
 │   └── src/
@@ -75,6 +78,12 @@ Visit `http://localhost:8000` in your browser.
 ├── package.json            # Node.js dependencies
 └── requirements.txt        # Python dependencies
 ```
+
+## Pages
+
+- `/` - Home page with HTMX demos (`home.html`)
+- `/flowbite-demo/` - Flowbite components showcase (`index.html`)
+- `/accounts/login/` - Login page with Flowbite form components
 
 ## Flowbite Configuration
 
