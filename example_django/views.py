@@ -5,6 +5,11 @@ import time
 import json
 
 
+def index(request):
+    """Index view with Flowbite components."""
+    return render(request, 'index.html')
+
+
 def home(request):
     """Home view with htmx functionality."""
     return render(request, 'home.html')

@@ -1,0 +1,75 @@
+<!-- templates/index.html -->
+
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="py-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Welcome to Django + Tailwind CSS + Flowbite
+    </h1>
+    
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">
+        This is a demo page showing Flowbite components with Tailwind CSS v4.
+    </p>
+
+    <!-- Example Flowbite Button -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Flowbite Buttons</h2>
+        <div class="flex gap-4">
+            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Default
+            </button>
+            <button type="button" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                Alternative
+            </button>
+            <button type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+                Success
+            </button>
+        </div>
+    </div>
+
+    <!-- Example Flowbite Card -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Flowbite Card</h2>
+        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-5">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    Card Title
+                </h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Here is a simple Flowbite card component with Tailwind CSS styling.
+                </p>
+                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Read more
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Example Flowbite Alert -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Flowbite Alert</h2>
+        <div class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Info alert!</span> This is an example Flowbite alert component.
+            </div>
+        </div>
+    </div>
+
+    <!-- Links to other pages -->
+    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Other Pages</h2>
+        <div class="flex gap-4">
+            <a href="{% url 'home' %}" class="text-blue-600 hover:underline dark:text-blue-500">HTMX Demo Page</a>
+            <a href="{% url 'login' %}" class="text-blue-600 hover:underline dark:text-blue-500">Login Page</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

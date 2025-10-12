@@ -19,7 +19,8 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.index, name='index'),
+    path('htmx-demo/', views.home, name='home'),
     path('time/', views.get_current_time, name='get_time'),
     path('greet/', views.greet, name='greet'),
     path('sse/', views.sse_stream, name='sse_stream'),
