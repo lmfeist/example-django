@@ -20,6 +20,7 @@ WORKDIR /app
 
 COPY --from=builder /app/venv venv
 COPY example_django example_django
+COPY static static
 COPY manage.py manage.py
 
 EXPOSE ${PORT}
