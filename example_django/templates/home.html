@@ -115,21 +115,19 @@
                     <div class="card-actions">
                         <button 
                             class="btn btn-primary"
-                            hx-ext="sse"
-                            sse-connect="/sse/"
-                            sse-swap="message"
-                            hx-target="#sse-result"
-                            hx-swap="beforeend">
+                            onclick="startSSE()">
                             Start SSE Stream
                         </button>
                         <button 
                             class="btn btn-secondary"
-                            onclick="document.getElementById('sse-result').innerHTML = ''">
+                            onclick="stopSSE()">
                             Clear
                         </button>
                     </div>
-                    <div id="sse-result" class="mt-4 max-h-64 overflow-y-auto">
-                        <!-- SSE updates will be displayed here -->
+                    <div id="sse-container" hx-ext="sse" class="mt-4 max-h-64 overflow-y-auto">
+                        <div id="sse-result" sse-swap="message" hx-swap="beforeend">
+                            <!-- SSE updates will be displayed here -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,6 +173,18 @@
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // SSE Control Functions
+        function startSSE() {
+            const container = document.getElementById('sse-container');
+            container.setAttribute('sse-connect', '/sse/');
+        }
+
+        function stopSSE() {
+            const container = document.getElementById('sse-container');
+            container.removeAttribute('sse-connect');
+            document.getElementById('sse-result').innerHTML = '';
+        }
     </script>
 </body>
 </html>
