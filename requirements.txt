@@ -2,7 +2,6 @@ asgiref
 Django==5.2
 uvicorn[standard]
 sqlparse
-whitenoise
 django-storages[s3]
 psycopg2-binary
 django-compressor
